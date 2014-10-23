@@ -36,8 +36,8 @@ Validates that a value is of type `string`.
 
 Options:
 
-- `minLength`: Validates that a value is at least `n` characters long.
 - `maxLength`: Validates that a value is at most `n` characters long.
+- `minLength`: Validates that a value is at least `n` characters long.
 
 ## Running the build
 
