@@ -30,6 +30,10 @@ var stringValidator = formats.string({ minLength: 7 });
 console.log(stringValidator('foobar')); // => false
 ```
 
+#### email
+
+Validates that a value is an email address.
+
 #### string
 
 Validates that a value is of type `string`.
