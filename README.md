@@ -30,7 +30,7 @@ var stringValidator = formats.string({ minLength: 7 });
 console.log(stringValidator('foobar')); // => false
 ```
 
-#### strings
+#### string
 
 Validates that a value is of type `string`.
 
