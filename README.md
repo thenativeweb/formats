@@ -4,7 +4,7 @@ formats is a collection of validators.
 
 ## Installation
 
-At the moment, installation of this module must be made manually.
+    $ npm install formats
 
 ## Quick start
 
@@ -13,6 +13,31 @@ First you need to add a reference to formats in your application.
 ```javascript
 var formats = require('formats');
 ```
+
+### Validating values
+
+Basically, to validate a value you need to call the appropriate function on the `formats` object, e.g. `string`. The result is a validator function that you can re-use multiple times.
+
+```javascript
+var stringValidator = formats.string();
+console.log(stringValidator('foobar')); // => true
+```
+
+Some validators are customizable. For that provide an `options` object when requesting the validator.
+
+```javascript
+var stringValidator = formats.string({ minLength: 7 });
+console.log(stringValidator('foobar')); // => false
+```
+
+#### strings
+
+Validates that a value is of type `string`.
+
+Options:
+
+- `minLength`: Validates that a value is at least `n` characters long.
+- `maxLength`: Validates that a value is at most `n` characters long.
 
 ## Running the build
 

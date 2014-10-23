@@ -9,4 +9,9 @@ suite('formats', function () {
     assert.that(formats, is.ofType('object'));
     done();
   });
+
+  test('contains validators.', function (done) {
+    assert.that(formats.string, is.ofType('function'));
+    done();
+  });
 });

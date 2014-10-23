@@ -13,8 +13,8 @@
     }
   ],
   "main": "lib/formats.js",
-  "private": true,
   "dependencies": {
+    "require-all": "0.0.8"
   },
   "devDependencies": {
     "grunt": "0.4.5",
