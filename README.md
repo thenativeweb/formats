@@ -30,11 +30,13 @@ var stringValidator = formats.string({ minLength: 7 });
 console.log(stringValidator('foobar')); // => false
 ```
 
-#### email
+#### Using built-in validators
+
+##### email
 
 Validates that a value is an email address, according to the [W3C HTML5 specification](http://www.w3.org/TR/html5/forms.html#valid-e-mail-address).
 
-#### string
+##### string
 
 Validates that a value is of type `string`.
 
