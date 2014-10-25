@@ -45,6 +45,39 @@ Options:
 - `maxLength`: Validates that a value is at most `n` characters long.
 - `minLength`: Validates that a value is at least `n` characters long.
 
+#### Using custom validators
+
+If you want to validate a value, but there is no matching built-in validator, you may use a custom validator.
+
+A custom validator is a function that returns a validator function that returns `true` if the specified value is valid, and `false` otherwise. Once you have defined the custom validator, you can use it by providing it to the `custom` function.
+
+```javascript
+var range = function (options) {
+  options = options || {};
+  options.min = options.min || Number.MIN_VALUE;
+  options.max = options.max || Number.MAX_VALUE;
+
+  return function (value) {
+    if (typeof value !== 'number') {
+      return false;
+    }
+
+    if (value < options.min) {
+      return false;
+    }
+
+    if (value > options.max) {
+      return false;
+    }
+
+    return true;
+  };
+};
+
+var rangeValidator = formats.custom(range({ min: 5, max: 23 }));
+console.log(rangeValidator(42)); // => false
+```
+
 ## Running the build
 
 This module can be built using [Grunt](http://gruntjs.com/). Besides running the tests, this also analyses the code. To run Grunt, go to the folder where you have installed formats and run `grunt`. You need to have [grunt-cli](https://github.com/gruntjs/grunt-cli) installed.
