@@ -53,7 +53,7 @@ A custom validator is a function that returns a validator function that returns 
 
 ```javascript
 var range = function (options) {
-  options = options || {};
+  options = options || {};
   options.min = options.min || Number.MIN_VALUE;
   options.max = options.max || Number.MAX_VALUE;
 
