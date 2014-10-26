@@ -5,7 +5,7 @@ var assert = require('node-assertthat');
 var validator = require('../../lib/validators/custom');
 
 var range = function (options) {
-  options = options || {};
+  options = options || {};
   options.min = options.min || Number.MIN_VALUE;
   options.max = options.max || Number.MAX_VALUE;
 
