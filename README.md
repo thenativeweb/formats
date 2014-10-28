@@ -58,14 +58,14 @@ Options:
 
 Validates that a value is of type `string`.
 
-##### uuid
-
-Validates that a value is a uuid.
-
 Options:
 
 - `maxLength`: Validates that a value is at most `n` characters long.
 - `minLength`: Validates that a value is at least `n` characters long.
+
+##### uuid
+
+Validates that a value is a uuid.
 
 #### Using custom validators
 
