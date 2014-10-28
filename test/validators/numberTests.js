@@ -31,6 +31,18 @@ suite('number', function () {
       done();
     });
 
+    suite('isInteger', function () {
+      test('returns false for a decimal number.', function (done) {
+        assert.that(validator({ isInteger: true })(3.7), is.false());
+        done();
+      });
+
+      test('returns true for an integer number.', function (done) {
+        assert.that(validator({ isInteger: true })(7), is.true());
+        done();
+      });
+    });
+
     suite('min', function () {
       test('returns false for a too small number.', function (done) {
         assert.that(validator({ min: 5 })(3), is.false());

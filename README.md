@@ -50,6 +50,7 @@ Validates that a value is of type `number`.
 
 Options:
 
+- `isInteger`: Validates that a value is an integer.
 - `max`: Validates that a value is at most `n`.
 - `min`: Validates that a value is at least `n`.
 
