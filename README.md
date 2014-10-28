@@ -36,6 +36,15 @@ console.log(stringValidator('foobar')); // => false
 
 Validates that a value is an email address, according to the [W3C HTML5 specification](http://www.w3.org/TR/html5/forms.html#valid-e-mail-address).
 
+##### number
+
+Validates that a value is of type `number`.
+
+Options:
+
+- `max`: Validates that a value is at most `n`.
+- `min`: Validates that a value is at least `n`.
+
 ##### string
 
 Validates that a value is of type `string`.
