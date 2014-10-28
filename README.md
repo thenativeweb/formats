@@ -58,6 +58,10 @@ Options:
 
 Validates that a value is of type `string`.
 
+##### uuid
+
+Validates that a value is a uuid.
+
 Options:
 
 - `maxLength`: Validates that a value is at most `n` characters long.
