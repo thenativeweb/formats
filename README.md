@@ -44,6 +44,14 @@ Validates that a value is an email address, according to the [W3C HTML5 specific
 
 Validates that a value is of type `function`.
 
+##### ip
+
+Validates that a value is an ip address.
+
+Options:
+
+- `version`: Validates that a value is a version `4` or version `6` address.
+
 ##### number
 
 Validates that a value is of type `number`.
