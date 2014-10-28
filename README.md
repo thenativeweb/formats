@@ -40,6 +40,10 @@ Validates that a value is of type `boolean`.
 
 Validates that a value is an email address, according to the [W3C HTML5 specification](http://www.w3.org/TR/html5/forms.html#valid-e-mail-address).
 
+##### function
+
+Validates that a value is of type `function`.
+
 ##### number
 
 Validates that a value is of type `number`.
