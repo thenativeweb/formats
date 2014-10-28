@@ -6,8 +6,8 @@ var validator = require('../../lib/validators/custom');
 
 var range = function (options) {
   options = options || {};
-  options.min = options.min || Number.MIN_VALUE;
-  options.max = options.max || Number.MAX_VALUE;
+  options.min = options.min || Number.NEGATIVE_INFINITY;
+  options.max = options.max || Number.POSITIVE_INFINITY;
 
   return function (value) {
     if (typeof value !== 'number') {
