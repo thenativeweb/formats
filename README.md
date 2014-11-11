@@ -108,6 +108,14 @@ var rangeValidator = formats.custom(range({ min: 5, max: 23 }));
 console.log(rangeValidator(42)); // => false
 ```
 
+### Skipping validator functions
+
+If you directly want to validate a value and skip the creation of a validator function, use the appropriate `is*` function, e.g. `isString`. These functions take the value as first parameter, and options as second.
+
+```javascript
+console.log(formats.isString('foobar', { minLength: 7 })); // => false
+```
+
 ## Running the build
 
 This module can be built using [Grunt](http://gruntjs.com/). Besides running the tests, this also analyses the code. To run Grunt, go to the folder where you have installed formats and run `grunt`. You need to have [grunt-cli](https://github.com/gruntjs/grunt-cli) installed.
