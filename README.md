@@ -32,6 +32,15 @@ console.log(stringValidator('foobar')); // => false
 
 #### Using built-in validators
 
+##### alphanumeric
+
+Validates that a value is of type `string` that contains only alphanumeric characters.
+
+Options:
+
+- `maxLength`: Validates that a value is at most `n` characters long.
+- `minLength`: Validates that a value is at least `n` characters long.
+
 ##### boolean
 
 Validates that a value is of type `boolean`.
