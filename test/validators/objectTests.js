@@ -2,7 +2,8 @@
 
 var assert = require('node-assertthat');
 
-var validator = require('../../lib/validators/object');
+var formats = require('../../lib/formats'),
+    validator = require('../../lib/validators/object');
 
 suite('object', function () {
   test('is a function.', function (done) {
@@ -44,6 +45,159 @@ suite('object', function () {
 
       test('returns true for a missing optional object.', function (done) {
         assert.that(validator({ isOptional: true })(null), is.true());
+        done();
+      });
+    });
+
+    suite('schema', function () {
+      suite('simple values', function () {
+        suite('single value', function () {
+          test('returns false if the schema is not fulfilled.', function (done) {
+            assert.that(validator({
+              schema: {
+                foo: formats.number()
+              }
+            })({
+              foo: 'bar'
+            }), is.false());
+            done();
+          });
+
+          test('returns true if the schema is fulfilled.', function (done) {
+            assert.that(validator({
+              schema: {
+                foo: formats.string()
+              }
+            })({
+              foo: 'bar'
+            }), is.true());
+            done();
+          });
+        });
+
+        suite('multiple values', function () {
+          test('returns false if the schema is not fulfilled.', function (done) {
+            assert.that(validator({
+              schema: {
+                foo: formats.string(),
+                bar: formats.number()
+              }
+            })({
+              foo: 'bar',
+              bar: null
+            }), is.false());
+            done();
+          });
+
+          test('returns true if the schema is fulfilled.', function (done) {
+            assert.that(validator({
+              schema: {
+                foo: formats.string(),
+                bar: formats.number()
+              }
+            })({
+              foo: 'bar',
+              bar: 23
+            }), is.true());
+            done();
+          });
+        });
+      });
+
+      suite('complex values', function () {
+        suite('single value', function () {
+          test('returns false if the schema is not fulfilled.', function (done) {
+            assert.that(validator({
+              schema: {
+                foo: formats.object()
+              }
+            })({
+              foo: null
+            }), is.false());
+            done();
+          });
+
+          test('returns true if the schema is fulfilled.', function (done) {
+            assert.that(validator({
+              schema: {
+                foo: formats.object({
+                  schema: {
+                    bar: formats.string()
+                  }
+                })
+              }
+            })({
+              foo: {
+                bar: 'baz'
+              }
+            }), is.true());
+            done();
+          });
+        });
+      });
+    });
+
+    suite('isSchemaRelaxed', function () {
+      test('throws an error when no schema is given.', function (done) {
+        assert.that(function () {
+          validator({ isSchemaRelaxed: true })({
+            foo: 'bar'
+          });
+        }, is.throwing('Schema is missing.'));
+        done();
+      });
+
+      test('returns false if set to false and the object contains more than the schema.', function (done) {
+        assert.that(validator({
+          schema: {
+            foo: formats.string()
+          },
+          isSchemaRelaxed: false
+        })({
+          foo: 'bar',
+          bar: 23
+        }), is.false());
+        done();
+      });
+
+      test('returns true if set to false and the object fulfills the schema.', function (done) {
+        assert.that(validator({
+          schema: {
+            foo: formats.string(),
+            bar: formats.number()
+          },
+          isSchemaRelaxed: false
+        })({
+          foo: 'bar',
+          bar: 23
+        }), is.true());
+        done();
+      });
+
+      test('returns true if set to true and the object contains more than the schema.', function (done) {
+        assert.that(validator({
+          schema: {
+            foo: formats.string()
+          },
+          isSchemaRelaxed: true
+        })({
+          foo: 'bar',
+          bar: 23
+        }), is.true());
+        done();
+      });
+
+      test('returns true if set to true and the object fulfills the schema.', function (done) {
+        assert.that(validator({
+          schema: {
+            foo: formats.string(),
+            bar: formats.number()
+          },
+          isSchemaRelaxed: true
+        })({
+          foo: 'bar',
+          bar: 23
+        }), is.true());
         done();
       });
     });

@@ -77,7 +77,9 @@ Validates that a value is of type `object`.
 
 Options:
 
-- `isOptional`: Validates that `null` is a valid object.
+- `isOptional`: Validates that a value can be `null`.
+- `schema`: Validates that a value fulfills a schema.
+- `isSchemaRelaxed`: Validates that at least a subset of the value fulfills the schema.
 
 ##### string
 
