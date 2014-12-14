@@ -71,6 +71,14 @@ Options:
 - `max`: Validates that a value is at most `n`.
 - `min`: Validates that a value is at least `n`.
 
+##### object
+
+Validates that a value is of type `object`.
+
+Options:
+
+- `isOptional`: Validates `null` as an object.
+
 ##### string
 
 Validates that a value is of type `string`.

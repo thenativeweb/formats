@@ -26,7 +26,7 @@ suite('uuid', function () {
       done();
     });
 
-    test('returns true for an uuid.', function (done) {
+    test('returns true for a uuid.', function (done) {
       assert.that(validator()('053767b2-470a-4d35-99b6-04afbce30ef9'), is.true());
       done();
     });
