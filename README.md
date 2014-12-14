@@ -77,7 +77,7 @@ Validates that a value is of type `object`.
 
 Options:
 
-- `isOptional`: Validates `null` as an object.
+- `isOptional`: Validates that `null` is a valid object.
 
 ##### string
 

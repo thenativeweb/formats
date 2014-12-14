@@ -21,8 +21,8 @@ suite('object', function () {
       done();
     });
 
-    test('returns true for null.', function (done) {
-      assert.that(validator()(null), is.true());
+    test('returns false for null.', function (done) {
+      assert.that(validator()(null), is.false());
       done();
     });
 
