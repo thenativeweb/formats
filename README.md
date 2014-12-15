@@ -36,63 +36,136 @@ console.log(stringValidator('foobar')); // => false
 
 Validates that a value is of type `string` that contains only alphanumeric characters.
 
-Options:
+###### Options
 
-- `maxLength`: Validates that a value is at most `n` characters long.
 - `minLength`: Validates that a value is at least `n` characters long.
+- `maxLength`: Validates that a value is at most `n` characters long.
+
+###### Sample
+
+```javascript
+var validator = formats.alphanumeric({
+  minLength: 5,
+  maxLength: 23
+});
+```
 
 ##### boolean
 
 Validates that a value is of type `boolean`.
 
+###### Sample
+
+```javascript
+var validator = formats.boolean();
+```
+
 ##### email
 
 Validates that a value is an email address, according to the [W3C HTML5 specification](http://www.w3.org/TR/html5/forms.html#valid-e-mail-address).
+
+###### Sample
+
+```javascript
+var validator = formats.email();
+```
 
 ##### function
 
 Validates that a value is of type `function`.
 
+###### Sample
+
+```javascript
+var validator = formats.function();
+```
+
 ##### ip
 
 Validates that a value is an ip address.
 
-Options:
+###### Options
 
 - `version`: Validates that a value is a version `4` or version `6` address.
+
+###### Sample
+
+```javascript
+var validator = formats.ip({
+  version: 4
+});
+```
 
 ##### number
 
 Validates that a value is of type `number`.
 
-Options:
+###### Options
 
 - `isInteger`: Validates that a value is an integer.
-- `max`: Validates that a value is at most `n`.
 - `min`: Validates that a value is at least `n`.
+- `max`: Validates that a value is at most `n`.
+
+###### Sample
+
+```javascript
+var validator = formats.number({
+  isInteger: true,
+  min: 5,
+  max: 23
+});
+```
 
 ##### object
 
 Validates that a value is of type `object`.
 
-Options:
+###### Options
 
-- `isOptional`: Validates that a value can be `null`.
+- `isOptional`: Validates that a value may be `null`.
 - `schema`: Validates that a value fulfills a schema.
-- `isSchemaRelaxed`: Validates that at least a subset of the value fulfills the schema.
+- `isSchemaRelaxed`: Validates that a value may contain additional properties that are not described by the schema.
+
+###### Sample
+
+```javascript
+var validator = formats.object({
+  isOptional: false,
+  schema: {
+    foo: formats.number(),
+    bar: formats.string()
+  },
+  isSchemaRelaxed: false
+});
+```
 
 ##### string
 
 Validates that a value is of type `string`.
 
-Options:
+###### Options
 
-- `maxLength`: Validates that a value is at most `n` characters long.
 - `minLength`: Validates that a value is at least `n` characters long.
+- `maxLength`: Validates that a value is at most `n` characters long.
+
+###### Sample
+
+```javascript
+var validator = formats.string({
+  minLength: 5,
+  maxLength: 23
+});
+```
 
 ##### uuid
 
 Validates that a value is a uuid.
+
+###### Sample
+
+```javascript
+var validator = formats.uuid();
+```
 
 #### Using custom validators
 
