@@ -200,7 +200,7 @@ var rangeValidator = formats.custom(range({ min: 5, max: 23 }));
 console.log(rangeValidator(42)); // => false
 ```
 
-### Skipping validator functions
+### Using is* validator functions
 
 If you directly want to validate a value and skip the creation of a validator function, use the appropriate `is*` function, e.g. `isString`. These functions take the value as first parameter, and options as second.
 
