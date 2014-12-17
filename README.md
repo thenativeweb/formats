@@ -183,7 +183,7 @@ var validator = formats.uuid();
 
 If you want to validate a value, but there is no matching built-in validator, you may use a custom validator.
 
-A custom validator is a function that returns a validator function that returns `true` if the specified value is valid, and `false` otherwise. Once you have defined the custom validator, you can use it by providing it to the `custom` function.
+A custom validator is a function that returns a validator function that returns `true` if the specified value is valid, and `false` otherwise (or the value and the default value, respectively, if the `default` option is given). Once you have defined the custom validator, you can use it by providing it to the `custom` function.
 
 ```javascript
 var getReturnValue = require('formats').getReturnValue;
@@ -227,8 +227,15 @@ console.log(formats.isString('foobar', { minLength: 7 })); // => false
 You may also use the `default` option as described above with the is* validator functions.
 
 ```javascript
-console.log(formats.isString('foobarbaz', { minLength: 7, default: 'formats' })); // => 'foobarbaz'
-console.log(formats.isString('foobar', { minLength: 7, default: 'formats' }));    // => 'formats'
+console.log(formats.isString('foobarbaz', {
+  minLength: 7,
+  default: 'formats'
+})); // => 'foobarbaz'
+
+console.log(formats.isString('foobar', {
+  minLength: 7,
+  default: 'formats'
+})); // => 'formats'
 ```
 
 ## Running the build
