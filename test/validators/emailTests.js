@@ -31,4 +31,16 @@ suite('email', function () {
       done();
     });
   });
+
+  suite('default', function () {
+    test('returns the value if valid.', function (done) {
+      assert.that(validator({ default: 'jane.doe@example.com' })('john.doe@example.com'), is.equalTo('john.doe@example.com'));
+      done();
+    });
+
+    test('returns the default value if not valid.', function (done) {
+      assert.that(validator({ default: 'jane.doe@example.com' })(23), is.equalTo('jane.doe@example.com'));
+      done();
+    });
+  });
 });

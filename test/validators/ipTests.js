@@ -53,4 +53,16 @@ suite('ip', function () {
       });
     });
   });
+
+  suite('default', function () {
+    test('returns the value if valid.', function (done) {
+      assert.that(validator({ default: '127.0.0.1' })('192.168.0.1'), is.equalTo('192.168.0.1'));
+      done();
+    });
+
+    test('returns the default value if not valid.', function (done) {
+      assert.that(validator({ default: '127.0.0.1' })(23), is.equalTo('127.0.0.1'));
+      done();
+    });
+  });
 });

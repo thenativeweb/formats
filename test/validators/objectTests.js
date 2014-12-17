@@ -202,4 +202,16 @@ suite('object', function () {
       });
     });
   });
+
+  suite('default', function () {
+    test('returns the value if valid.', function (done) {
+      assert.that(validator({ default: { foo: 'bar' }})({ foo: 'baz' }), is.equalTo({ foo: 'baz' }));
+      done();
+    });
+
+    test('returns the default value if not valid.', function (done) {
+      assert.that(validator({ default: { foo: 'bar' }})(23), is.equalTo({ foo: 'bar' }));
+      done();
+    });
+  });
 });

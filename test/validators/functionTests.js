@@ -26,4 +26,28 @@ suite('function', function () {
       done();
     });
   });
+
+  suite('default', function () {
+    test('returns the value if valid.', function (done) {
+      var defaultFunction = function () {
+        return 42;
+      };
+
+      var inputFunction = function () {
+        return 23;
+      };
+
+      assert.that(validator({ default: defaultFunction })(inputFunction), is.equalTo(inputFunction));
+      done();
+    });
+
+    test('returns the default value if not valid.', function (done) {
+      var defaultFunction = function () {
+        return 23;
+      };
+
+      assert.that(validator({ default: defaultFunction })(23), is.equalTo(defaultFunction));
+      done();
+    });
+  });
 });

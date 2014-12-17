@@ -67,4 +67,16 @@ suite('number', function () {
       });
     });
   });
+
+  suite('default', function () {
+    test('returns the value if valid.', function (done) {
+      assert.that(validator({ default: 42 })(23), is.equalTo(23));
+      done();
+    });
+
+    test('returns the default value if not valid.', function (done) {
+      assert.that(validator({ default: 42 })('foo'), is.equalTo(42));
+      done();
+    });
+  });
 });

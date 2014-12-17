@@ -31,4 +31,16 @@ suite('boolean', function () {
       done();
     });
   });
+
+  suite('default', function () {
+    test('returns the value if valid.', function (done) {
+      assert.that(validator({ default: true })(false), is.false());
+      done();
+    });
+
+    test('returns the default value if not valid.', function (done) {
+      assert.that(validator({ default: true })(23), is.true());
+      done();
+    });
+  });
 });
