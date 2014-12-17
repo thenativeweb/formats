@@ -131,5 +131,11 @@ suite('formats', function () {
       assert.that(formats.isString('foobar', { minLength: 5 }), is.true());
       done();
     });
+
+    test('validates the given value using the default option.', function (done) {
+      assert.that(formats.isString('foobar', { minLength: 7, default: 'formats' }), is.equalTo('formats'));
+      assert.that(formats.isString('foobar', { minLength: 5, default: 'formats' }), is.equalTo('foobar'));
+      done();
+    });
   });
 });
