@@ -40,6 +40,8 @@ console.log(stringValidator('foobarbaz')); // => 'foobarbaz'
 console.log(stringValidator('foobar'));    // => 'formats'
 ```
 
+Although not explicitly described below, the `default` option is available for every validator.
+
 ### Using built-in validators
 
 #### alphanumeric
@@ -184,25 +186,29 @@ If you want to validate a value, but there is no matching built-in validator, yo
 A custom validator is a function that returns a validator function that returns `true` if the specified value is valid, and `false` otherwise. Once you have defined the custom validator, you can use it by providing it to the `custom` function.
 
 ```javascript
+var getReturnValue = require('formats').getReturnValue;
+
 var range = function (options) {
   options = options || {};
   options.min = options.min || Number.NEGATIVE_INFINITY;
   options.max = options.max || Number.POSITIVE_INFINITY;
 
   return function (value) {
+    var returnValue = getReturnValue(value, options);
+
     if (typeof value !== 'number') {
-      return false;
+      return returnValue.false;
     }
 
     if (value < options.min) {
-      return false;
+      return returnValue.false;
     }
 
     if (value > options.max) {
-      return false;
+      return returnValue.false;
     }
 
-    return true;
+    return returnValue.true;
   };
 };
 
