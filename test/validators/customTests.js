@@ -2,7 +2,8 @@
 
 var assert = require('node-assertthat');
 
-var validator = require('../../lib/validators/custom');
+var getReturnValue = require('../../lib/getReturnValue'),
+    validator = require('../../lib/validators/custom');
 
 var range = function (options) {
   options = options || {};
@@ -10,19 +11,21 @@ var range = function (options) {
   options.max = options.max || Number.POSITIVE_INFINITY;
 
   return function (value) {
+    var returnValue = getReturnValue(value, options);
+
     if (typeof value !== 'number') {
-      return false;
+      return returnValue.false;
     }
 
     if (value < options.min) {
-      return false;
+      return returnValue.false;
     }
 
     if (value > options.max) {
-      return false;
+      return returnValue.false;
     }
 
-    return true;
+    return returnValue.true;
   };
 };
 
@@ -49,6 +52,14 @@ suite('custom', function () {
     assert.that(rangeValidator(7), is.true());
     assert.that(rangeValidator(23), is.true());
     assert.that(rangeValidator(42), is.false());
+    done();
+  });
+
+  test('returns the requested validator with default option.', function (done) {
+    var rangeValidator = validator(range({ min: 5, max: 23, default: 7 }));
+    assert.that(rangeValidator(7), is.equalTo(7));
+    assert.that(rangeValidator(23), is.equalTo(23));
+    assert.that(rangeValidator(42), is.equalTo(7));
     done();
   });
 });
