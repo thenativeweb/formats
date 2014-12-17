@@ -30,18 +30,28 @@ var stringValidator = formats.string({ minLength: 7 });
 console.log(stringValidator('foobar')); // => false
 ```
 
-#### Using built-in validators
+#### Working with default values
 
-##### alphanumeric
+From time to time you may be interested in the actual value instead of a boolean (or a default value in case of an invalid value). In these cases, specify the `default` option.
+
+```javascript
+var stringValidator = formats.string({ minLength: 7, default: 'formats' });
+console.log(stringValidator('foobarbaz')); // => 'foobarbaz'
+console.log(stringValidator('foobar'));    // => 'formats'
+```
+
+### Using built-in validators
+
+#### alphanumeric
 
 Validates that a value is of type `string` that contains only alphanumeric characters.
 
-###### Options
+##### Options
 
 - `minLength`: Validates that a value is at least `n` characters long.
 - `maxLength`: Validates that a value is at most `n` characters long.
 
-###### Sample
+##### Sample
 
 ```javascript
 var validator = formats.alphanumeric({
@@ -50,45 +60,45 @@ var validator = formats.alphanumeric({
 });
 ```
 
-##### boolean
+#### boolean
 
 Validates that a value is of type `boolean`.
 
-###### Sample
+##### Sample
 
 ```javascript
 var validator = formats.boolean();
 ```
 
-##### email
+#### email
 
 Validates that a value is an email address, according to the [W3C HTML5 specification](http://www.w3.org/TR/html5/forms.html#valid-e-mail-address).
 
-###### Sample
+##### Sample
 
 ```javascript
 var validator = formats.email();
 ```
 
-##### function
+#### function
 
 Validates that a value is of type `function`.
 
-###### Sample
+##### Sample
 
 ```javascript
 var validator = formats.function();
 ```
 
-##### ip
+#### ip
 
 Validates that a value is an ip address.
 
-###### Options
+##### Options
 
 - `version`: Validates that a value is a version `4` or version `6` address.
 
-###### Sample
+##### Sample
 
 ```javascript
 var validator = formats.ip({
@@ -96,17 +106,17 @@ var validator = formats.ip({
 });
 ```
 
-##### number
+#### number
 
 Validates that a value is of type `number`.
 
-###### Options
+##### Options
 
 - `isInteger`: Validates that a value is an integer.
 - `min`: Validates that a value is at least `n`.
 - `max`: Validates that a value is at most `n`.
 
-###### Sample
+##### Sample
 
 ```javascript
 var validator = formats.number({
@@ -116,17 +126,17 @@ var validator = formats.number({
 });
 ```
 
-##### object
+#### object
 
 Validates that a value is of type `object`.
 
-###### Options
+##### Options
 
 - `isOptional`: Validates that a value may be `null`.
 - `schema`: Validates that a value fulfills a schema.
 - `isSchemaRelaxed`: Validates that a value may contain additional properties that are not described by the schema.
 
-###### Sample
+##### Sample
 
 ```javascript
 var validator = formats.object({
@@ -139,16 +149,16 @@ var validator = formats.object({
 });
 ```
 
-##### string
+#### string
 
 Validates that a value is of type `string`.
 
-###### Options
+##### Options
 
 - `minLength`: Validates that a value is at least `n` characters long.
 - `maxLength`: Validates that a value is at most `n` characters long.
 
-###### Sample
+##### Sample
 
 ```javascript
 var validator = formats.string({
@@ -157,17 +167,17 @@ var validator = formats.string({
 });
 ```
 
-##### uuid
+#### uuid
 
 Validates that a value is a uuid.
 
-###### Sample
+##### Sample
 
 ```javascript
 var validator = formats.uuid();
 ```
 
-#### Using custom validators
+### Using custom validators
 
 If you want to validate a value, but there is no matching built-in validator, you may use a custom validator.
 
@@ -206,6 +216,13 @@ If you directly want to validate a value and skip the creation of a validator fu
 
 ```javascript
 console.log(formats.isString('foobar', { minLength: 7 })); // => false
+```
+
+You may also use the `default` option as described above with the is* validator functions.
+
+```javascript
+console.log(formats.isString('foobarbaz', { minLength: 7, default: 'formats' })); // => 'foobarbaz'
+console.log(formats.isString('foobar', { minLength: 7, default: 'formats' }));    // => 'formats'
 ```
 
 ## Running the build

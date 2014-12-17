@@ -10,6 +10,11 @@ suite('formats', function () {
     done();
   });
 
+  test('has a getReturnValue function.', function (done) {
+    assert.that(formats.getReturnValue, is.ofType('function'));
+    done();
+  });
+
   suite('contains validators', function () {
     test('alphanumeric.', function (done) {
       assert.that(formats.alphanumeric, is.ofType('function'));
