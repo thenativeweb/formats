@@ -23,5 +23,9 @@
     "type": "git",
     "url": "git://github.com/thenativeweb/formats.git"
   },
+  "keywords": [
+    "format",
+    "validator"
+  ],
   "license": "MIT"
 }
