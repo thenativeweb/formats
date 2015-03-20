@@ -1,50 +1,50 @@
 'use strict';
 
-var assert = require('node-assertthat');
+var assert = require('assertthat');
 
 var formats = require('../../lib/formats'),
     validator = require('../../lib/validators/object');
 
 suite('object', function () {
   test('is a function.', function (done) {
-    assert.that(validator, is.ofType('function'));
+    assert.that(validator).is.ofType('function');
     done();
   });
 
   test('returns a function.', function (done) {
-    assert.that(validator(), is.ofType('function'));
+    assert.that(validator()).is.ofType('function');
     done();
   });
 
   suite('basics', function () {
     test('returns false for a non-object.', function (done) {
-      assert.that(validator()(23), is.false());
+      assert.that(validator()(23)).is.false();
       done();
     });
 
     test('returns false for null.', function (done) {
-      assert.that(validator()(null), is.false());
+      assert.that(validator()(null)).is.false();
       done();
     });
 
     test('returns true for an object.', function (done) {
-      assert.that(validator()({ foo: 'bar' }), is.true());
+      assert.that(validator()({ foo: 'bar' })).is.true();
       done();
     });
 
     test('returns true for an empty object.', function (done) {
-      assert.that(validator()({}), is.true());
+      assert.that(validator()({})).is.true();
       done();
     });
 
     suite('isOptional', function () {
       test('returns false for a missing mandatory object.', function (done) {
-        assert.that(validator({ isOptional: false })(null), is.false());
+        assert.that(validator({ isOptional: false })(null)).is.false();
         done();
       });
 
       test('returns true for a missing optional object.', function (done) {
-        assert.that(validator({ isOptional: true })(null), is.true());
+        assert.that(validator({ isOptional: true })(null)).is.true();
         done();
       });
     });
@@ -59,7 +59,7 @@ suite('object', function () {
               }
             })({
               foo: 'bar'
-            }), is.false());
+            })).is.false();
             done();
           });
 
@@ -70,7 +70,7 @@ suite('object', function () {
               }
             })({
               foo: 'bar'
-            }), is.true());
+            })).is.true();
             done();
           });
         });
@@ -85,7 +85,7 @@ suite('object', function () {
             })({
               foo: 'bar',
               bar: null
-            }), is.false());
+            })).is.false();
             done();
           });
 
@@ -98,7 +98,7 @@ suite('object', function () {
             })({
               foo: 'bar',
               bar: 23
-            }), is.true());
+            })).is.true();
             done();
           });
         });
@@ -113,7 +113,7 @@ suite('object', function () {
               }
             })({
               foo: null
-            }), is.false());
+            })).is.false();
             done();
           });
 
@@ -130,7 +130,7 @@ suite('object', function () {
               foo: {
                 bar: 'baz'
               }
-            }), is.true());
+            })).is.true();
             done();
           });
         });
@@ -143,7 +143,7 @@ suite('object', function () {
           validator({ isSchemaRelaxed: true })({
             foo: 'bar'
           });
-        }, is.throwing('Schema is missing.'));
+        }).is.throwing('Schema is missing.');
         done();
       });
 
@@ -156,7 +156,7 @@ suite('object', function () {
         })({
           foo: 'bar',
           bar: 23
-        }), is.false());
+        })).is.false();
         done();
       });
 
@@ -170,7 +170,7 @@ suite('object', function () {
         })({
           foo: 'bar',
           bar: 23
-        }), is.true());
+        })).is.true();
         done();
       });
 
@@ -183,7 +183,7 @@ suite('object', function () {
         })({
           foo: 'bar',
           bar: 23
-        }), is.true());
+        })).is.true();
         done();
       });
 
@@ -197,7 +197,7 @@ suite('object', function () {
         })({
           foo: 'bar',
           bar: 23
-        }), is.true());
+        })).is.true();
         done();
       });
     });
@@ -205,12 +205,12 @@ suite('object', function () {
 
   suite('default', function () {
     test('returns the value if valid.', function (done) {
-      assert.that(validator({ default: { foo: 'bar' }})({ foo: 'baz' }), is.equalTo({ foo: 'baz' }));
+      assert.that(validator({ default: { foo: 'bar' }})({ foo: 'baz' })).is.equalTo({ foo: 'baz' });
       done();
     });
 
     test('returns the default value if not valid.', function (done) {
-      assert.that(validator({ default: { foo: 'bar' }})(23), is.equalTo({ foo: 'bar' }));
+      assert.that(validator({ default: { foo: 'bar' }})(23)).is.equalTo({ foo: 'bar' });
       done();
     });
   });
