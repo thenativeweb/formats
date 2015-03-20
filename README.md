@@ -72,6 +72,24 @@ Validates that a value is of type `boolean`.
 var validator = formats.boolean();
 ```
 
+#### date
+
+Validates that a value is of type `Date`.
+
+##### Options
+
+- `min`: Validates that a value is later than `n`.
+- `max`: Validates that a value is earlier than `n`.
+
+##### Sample
+
+```javascript
+var validator = formats.date({
+  min: new Date(2015, 0, 1),
+  max: new Date(2015, 11, 31)
+});
+```
+
 #### email
 
 Validates that a value is an email address, according to the [W3C HTML5 specification](http://www.w3.org/TR/html5/forms.html#valid-e-mail-address).

@@ -31,6 +31,11 @@ suite('formats', function () {
       done();
     });
 
+    test('date.', function (done) {
+      assert.that(formats.date).is.ofType('function');
+      done();
+    });
+
     test('email.', function (done) {
       assert.that(formats.email).is.ofType('function');
       done();
@@ -80,6 +85,11 @@ suite('formats', function () {
 
     test('custom.', function (done) {
       assert.that(formats.isCustom).is.ofType('function');
+      done();
+    });
+
+    test('date.', function (done) {
+      assert.that(formats.isDate).is.ofType('function');
       done();
     });
 
