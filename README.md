@@ -179,6 +179,22 @@ var validator = formats.object({
 });
 ```
 
+#### regex
+
+Validates that a value matches a regular expression.
+
+##### Options
+
+- `expression`: Validates that the value matches a regular expression.
+
+##### Sample
+
+```javascript
+var validator = formats.regex({
+  expression: /^foo$/
+});
+```
+
 #### string
 
 Validates that a value is of type `string`.

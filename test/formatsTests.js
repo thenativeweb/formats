@@ -66,6 +66,11 @@ suite('formats', function () {
       done();
     });
 
+    test('regex.', function (done) {
+      assert.that(formats.regex).is.ofType('function');
+      done();
+    });
+
     test('string.', function (done) {
       assert.that(formats.string).is.ofType('function');
       done();
@@ -125,6 +130,11 @@ suite('formats', function () {
 
     test('object.', function (done) {
       assert.that(formats.isObject).is.ofType('function');
+      done();
+    });
+
+    test('regex.', function (done) {
+      assert.that(formats.isRegex).is.ofType('function');
       done();
     });
 
