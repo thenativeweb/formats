@@ -15,6 +15,13 @@ suite('date', function () {
     done();
   });
 
+  test('throws on unknown properties.', function (done) {
+    assert.that(function () {
+      validator({ nonExistent: 'foobar' });
+    }).is.throwing('Unknown property nonExistent.');
+    done();
+  });
+
   suite('basics', function () {
     test('returns false for a non-date.', function (done) {
       assert.that(validator()('foo')).is.false();

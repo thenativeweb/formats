@@ -29,6 +29,13 @@ suite('regex', function () {
     done();
   });
 
+  test('throws on unknown properties.', function (done) {
+    assert.that(function () {
+      validator({ expression: /^foo$/, nonExistent: 'foobar' });
+    }).is.throwing('Unknown property nonExistent.');
+    done();
+  });
+
   suite('basics', function () {
     suite('expression', function () {
       test('returns false if the regex does not match.', function (done) {
