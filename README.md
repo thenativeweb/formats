@@ -126,6 +126,16 @@ var validator = formats.ip({
 });
 ```
 
+#### mac
+
+Validates that a value is a MAC address, according to the IEEE 802 standard.
+
+##### Sample
+
+```javascript
+var validator = formats.mac();
+```
+
 #### number
 
 Validates that a value is of type `number`.

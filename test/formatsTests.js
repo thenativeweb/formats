@@ -51,6 +51,11 @@ suite('formats', function () {
       done();
     });
 
+    test('mac.', function (done) {
+      assert.that(formats.mac).is.ofType('function');
+      done();
+    });
+
     test('number.', function (done) {
       assert.that(formats.number).is.ofType('function');
       done();
@@ -105,6 +110,11 @@ suite('formats', function () {
 
     test('ip.', function (done) {
       assert.that(formats.isIp).is.ofType('function');
+      done();
+    });
+
+    test('mac.', function (done) {
+      assert.that(formats.isMac).is.ofType('function');
       done();
     });
 
