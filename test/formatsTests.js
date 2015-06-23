@@ -15,6 +15,11 @@ suite('formats', function () {
     done();
   });
 
+  test('has a throwOnUnknownProperties function.', function (done) {
+    assert.that(formats.throwOnUnknownProperties).is.ofType('function');
+    done();
+  });
+
   suite('contains validators', function () {
     test('alphanumeric.', function (done) {
       assert.that(formats.alphanumeric).is.ofType('function');

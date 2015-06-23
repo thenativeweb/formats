@@ -229,13 +229,18 @@ If you want to validate a value, but there is no matching built-in validator, yo
 
 A custom validator is a function that returns a validator function that returns `true` if the specified value is valid, and `false` otherwise (or the value and the default value, respectively, if the `default` option is given). Once you have defined the custom validator, you can use it by providing it to the `custom` function.
 
+Additionally, it is advised to protect against unknown properties to avoid typos when creating the validators. For this, use `throwOnUnknownProperties`.
+
 ```javascript
-var getReturnValue = require('formats').getReturnValue;
+var getReturnValue = require('formats').getReturnValue,
+    throwOnUnknownProperties = require('formats').throwOnUnknownProperties;
 
 var range = function (options) {
   options = options || {};
   options.min = options.min || Number.NEGATIVE_INFINITY;
   options.max = options.max || Number.POSITIVE_INFINITY;
+
+  throwOnUnknownProperties(options, [ 'min', 'max', 'default' ]);
 
   return function (value) {
     var returnValue = getReturnValue(value, options);
@@ -291,7 +296,7 @@ This module can be built using [Grunt](http://gruntjs.com/). Besides running the
 ## License
 
 The MIT License (MIT)
-Copyright (c) 2014 the native web.
+Copyright (c) 2014-2015 the native web.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
