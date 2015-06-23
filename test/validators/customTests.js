@@ -49,6 +49,7 @@ suite('custom', function () {
 
   test('returns the requested validator.', function (done) {
     var rangeValidator = validator(range({ min: 5, max: 23 }));
+
     assert.that(rangeValidator(7)).is.true();
     assert.that(rangeValidator(23)).is.true();
     assert.that(rangeValidator(42)).is.false();
@@ -57,6 +58,7 @@ suite('custom', function () {
 
   test('returns the requested validator with default option.', function (done) {
     var rangeValidator = validator(range({ min: 5, max: 23, default: 7 }));
+
     assert.that(rangeValidator(7)).is.equalTo(7);
     assert.that(rangeValidator(23)).is.equalTo(23);
     assert.that(rangeValidator(42)).is.equalTo(7);

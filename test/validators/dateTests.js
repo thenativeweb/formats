@@ -44,12 +44,12 @@ suite('date', function () {
     });
 
     suite('max', function () {
-      test.skip('returns false for a too late date.', function (done) {
+      test('returns false for a too late date.', function (done) {
         assert.that(validator({ max: new Date(2015, 0, 1) })(new Date(2015, 11, 31))).is.false();
         done();
       });
 
-      test.skip('returns true for a date early enough.', function (done) {
+      test('returns true for a date early enough.', function (done) {
         assert.that(validator({ max: new Date(2015, 0, 1) })(new Date(2014, 11, 31))).is.true();
         done();
       });
