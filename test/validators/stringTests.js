@@ -1,8 +1,8 @@
 'use strict';
 
-var assert = require('assertthat');
+const assert = require('assertthat');
 
-var validator = require('../../lib/validators/string');
+const validator = require('../../lib/validators/string');
 
 suite('string', function () {
   test('is a function.', function (done) {

@@ -1,8 +1,8 @@
 'use strict';
 
-var assert = require('assertthat');
+const assert = require('assertthat');
 
-var validator = require('../../lib/validators/mac');
+const validator = require('../../lib/validators/mac');
 
 suite('mac', function () {
   test('is a function.', function (done) {

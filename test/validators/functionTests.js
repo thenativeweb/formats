@@ -1,8 +1,8 @@
 'use strict';
 
-var assert = require('assertthat');
+const assert = require('assertthat');
 
-var validator = require('../../lib/validators/function');
+const validator = require('../../lib/validators/function');
 
 suite('function', function () {
   test('is a function.', function (done) {
@@ -36,11 +36,11 @@ suite('function', function () {
 
   suite('default', function () {
     test('returns the value if valid.', function (done) {
-      var defaultFunction = function () {
+      const defaultFunction = function () {
         return 42;
       };
 
-      var inputFunction = function () {
+      const inputFunction = function () {
         return 23;
       };
 
@@ -49,7 +49,7 @@ suite('function', function () {
     });
 
     test('returns the default value if not valid.', function (done) {
-      var defaultFunction = function () {
+      const defaultFunction = function () {
         return 23;
       };
 

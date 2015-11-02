@@ -1,8 +1,8 @@
 'use strict';
 
-var assert = require('assertthat');
+const assert = require('assertthat');
 
-var formats = require('../../lib/formats'),
+const formats = require('../../lib/formats'),
     validator = require('../../lib/validators/object');
 
 suite('object', function () {
@@ -52,6 +52,11 @@ suite('object', function () {
 
       test('returns true for a missing optional object.', function (done) {
         assert.that(validator({ isOptional: true })(null)).is.true();
+        done();
+      });
+
+      test('returns true for a missing optional object with sub-schemas.', function (done) {
+        assert.that(validator({ schema: { foo: 'bar' }, isOptional: true })(null)).is.true();
         done();
       });
     });

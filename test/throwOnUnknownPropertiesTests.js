@@ -1,8 +1,8 @@
 'use strict';
 
-var assert = require('assertthat');
+const assert = require('assertthat');
 
-var throwOnUnknownProperties = require('../lib/throwOnUnknownProperties');
+const throwOnUnknownProperties = require('../lib/throwOnUnknownProperties');
 
 suite('throwOnUnknownProperties', function () {
   test('is a function.', function (done) {

@@ -1,17 +1,17 @@
 'use strict';
 
-var assert = require('assertthat');
+const assert = require('assertthat');
 
-var getReturnValue = require('../../lib/getReturnValue'),
+const getReturnValue = require('../../lib/getReturnValue'),
     validator = require('../../lib/validators/custom');
 
-var range = function (options) {
+const range = function (options) {
   options = options || {};
   options.min = options.min || Number.NEGATIVE_INFINITY;
   options.max = options.max || Number.POSITIVE_INFINITY;
 
   return function (value) {
-    var returnValue = getReturnValue(value, options);
+    const returnValue = getReturnValue(value, options);
 
     if (typeof value !== 'number') {
       return returnValue.false;
@@ -48,7 +48,7 @@ suite('custom', function () {
   });
 
   test('returns the requested validator.', function (done) {
-    var rangeValidator = validator(range({ min: 5, max: 23 }));
+    const rangeValidator = validator(range({ min: 5, max: 23 }));
 
     assert.that(rangeValidator(7)).is.true();
     assert.that(rangeValidator(23)).is.true();
@@ -57,7 +57,7 @@ suite('custom', function () {
   });
 
   test('returns the requested validator with default option.', function (done) {
-    var rangeValidator = validator(range({ min: 5, max: 23, default: 7 }));
+    const rangeValidator = validator(range({ min: 5, max: 23, default: 7 }));
 
     assert.that(rangeValidator(7)).is.equalTo(7);
     assert.that(rangeValidator(23)).is.equalTo(23);

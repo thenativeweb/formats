@@ -1,8 +1,8 @@
 'use strict';
 
-var assert = require('assertthat');
+const assert = require('assertthat');
 
-var validator = require('../../lib/validators/date');
+const validator = require('../../lib/validators/date');
 
 suite('date', function () {
   test('is a function.', function (done) {
@@ -65,7 +65,7 @@ suite('date', function () {
 
   suite('default', function () {
     test('returns the value if valid.', function (done) {
-      var now = new Date(),
+      const now = new Date(),
           past = new Date(20015, 0, 1);
 
       assert.that(validator({ default: now })(past)).is.equalTo(past);
@@ -73,7 +73,7 @@ suite('date', function () {
     });
 
     test('returns the default value if not valid.', function (done) {
-      var now = new Date();
+      const now = new Date();
 
       assert.that(validator({ default: now })('foo')).is.equalTo(now);
       done();
