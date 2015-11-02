@@ -11,7 +11,7 @@ formats is a collection of validators.
 First you need to add a reference to formats in your application.
 
 ```javascript
-var formats = require('formats');
+const formats = require('formats');
 ```
 
 ### Validating values
@@ -19,14 +19,14 @@ var formats = require('formats');
 Basically, to validate a value you need to call the appropriate function on the `formats` object, e.g. `string`. The result is a validator function that you can re-use multiple times.
 
 ```javascript
-var stringValidator = formats.string();
+const stringValidator = formats.string();
 console.log(stringValidator('foobar')); // => true
 ```
 
 Some validators are customizable. For that provide an `options` object when requesting the validator.
 
 ```javascript
-var stringValidator = formats.string({ minLength: 7 });
+const stringValidator = formats.string({ minLength: 7 });
 console.log(stringValidator('foobar')); // => false
 ```
 
@@ -35,7 +35,7 @@ console.log(stringValidator('foobar')); // => false
 From time to time you may be interested in the actual value instead of a boolean (or a default value in case of an invalid value). In these cases, specify the `default` option.
 
 ```javascript
-var stringValidator = formats.string({ minLength: 7, default: 'formats' });
+const stringValidator = formats.string({ minLength: 7, default: 'formats' });
 console.log(stringValidator('foobarbaz')); // => 'foobarbaz'
 console.log(stringValidator('foobar'));    // => 'formats'
 ```
@@ -56,7 +56,7 @@ Validates that a value is of type `string` that contains only alphanumeric chara
 ##### Sample
 
 ```javascript
-var validator = formats.alphanumeric({
+const validator = formats.alphanumeric({
   minLength: 5,
   maxLength: 23
 });
@@ -69,7 +69,7 @@ Validates that a value is of type `boolean`.
 ##### Sample
 
 ```javascript
-var validator = formats.boolean();
+const validator = formats.boolean();
 ```
 
 #### date
@@ -84,7 +84,7 @@ Validates that a value is of type `Date`.
 ##### Sample
 
 ```javascript
-var validator = formats.date({
+const validator = formats.date({
   min: new Date(2015, 0, 1),
   max: new Date(2015, 11, 31)
 });
@@ -97,7 +97,7 @@ Validates that a value is an email address, according to the [W3C HTML5 specific
 ##### Sample
 
 ```javascript
-var validator = formats.email();
+const validator = formats.email();
 ```
 
 #### function
@@ -107,7 +107,7 @@ Validates that a value is of type `function`.
 ##### Sample
 
 ```javascript
-var validator = formats.function();
+const validator = formats.function();
 ```
 
 #### ip
@@ -121,7 +121,7 @@ Validates that a value is an ip address.
 ##### Sample
 
 ```javascript
-var validator = formats.ip({
+const validator = formats.ip({
   version: 4
 });
 ```
@@ -133,7 +133,7 @@ Validates that a value is a MAC address, according to the IEEE 802 standard.
 ##### Sample
 
 ```javascript
-var validator = formats.mac();
+const validator = formats.mac();
 ```
 
 #### number
@@ -149,7 +149,7 @@ Validates that a value is of type `number`.
 ##### Sample
 
 ```javascript
-var validator = formats.number({
+const validator = formats.number({
   isInteger: true,
   min: 5,
   max: 23
@@ -169,7 +169,7 @@ Validates that a value is of type `object`.
 ##### Sample
 
 ```javascript
-var validator = formats.object({
+const validator = formats.object({
   isOptional: false,
   schema: {
     foo: formats.number(),
@@ -190,7 +190,7 @@ Validates that a value matches a regular expression.
 ##### Sample
 
 ```javascript
-var validator = formats.regex({
+const validator = formats.regex({
   expression: /^foo$/
 });
 ```
@@ -207,7 +207,7 @@ Validates that a value is of type `string`.
 ##### Sample
 
 ```javascript
-var validator = formats.string({
+const validator = formats.string({
   minLength: 5,
   maxLength: 23
 });
@@ -220,7 +220,7 @@ Validates that a value is a uuid.
 ##### Sample
 
 ```javascript
-var validator = formats.uuid();
+const validator = formats.uuid();
 ```
 
 ### Using custom validators
@@ -232,10 +232,10 @@ A custom validator is a function that returns a validator function that returns 
 Additionally, it is advised to protect against unknown properties to avoid typos when creating the validators. For this, use `throwOnUnknownProperties`.
 
 ```javascript
-var getReturnValue = require('formats').getReturnValue,
+const getReturnValue = require('formats').getReturnValue,
     throwOnUnknownProperties = require('formats').throwOnUnknownProperties;
 
-var range = function (options) {
+const range = function (options) {
   options = options || {};
   options.min = options.min || Number.NEGATIVE_INFINITY;
   options.max = options.max || Number.POSITIVE_INFINITY;
@@ -243,7 +243,7 @@ var range = function (options) {
   throwOnUnknownProperties(options, [ 'min', 'max', 'default' ]);
 
   return function (value) {
-    var returnValue = getReturnValue(value, options);
+    const returnValue = getReturnValue(value, options);
 
     if (typeof value !== 'number') {
       return returnValue.false;
@@ -261,7 +261,7 @@ var range = function (options) {
   };
 };
 
-var rangeValidator = formats.custom(range({ min: 5, max: 23 }));
+const rangeValidator = formats.custom(range({ min: 5, max: 23 }));
 console.log(rangeValidator(42)); // => false
 ```
 
