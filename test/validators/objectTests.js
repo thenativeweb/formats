@@ -34,6 +34,11 @@ suite('object', function () {
       done();
     });
 
+    test('returns false for undefined.', function (done) {
+      assert.that(validator()(undefined)).is.false();
+      done();
+    });
+
     test('returns true for an object.', function (done) {
       assert.that(validator()({ foo: 'bar' })).is.true();
       done();
@@ -45,13 +50,23 @@ suite('object', function () {
     });
 
     suite('isOptional', function () {
-      test('returns false for a missing mandatory object.', function (done) {
+      test('returns false for a missing mandatory object with null.', function (done) {
         assert.that(validator({ isOptional: false })(null)).is.false();
         done();
       });
 
-      test('returns true for a missing optional object.', function (done) {
+      test('returns false for a missing mandatory object with undefined.', function (done) {
+        assert.that(validator({ isOptional: false })(undefined)).is.false();
+        done();
+      });
+
+      test('returns true for a missing optional object with null.', function (done) {
         assert.that(validator({ isOptional: true })(null)).is.true();
+        done();
+      });
+
+      test('returns true for a missing optional object with undefined.', function (done) {
+        assert.that(validator({ isOptional: true })(undefined)).is.true();
         done();
       });
 

@@ -4,7 +4,9 @@ formats is a collection of validators.
 
 ## Installation
 
-    $ npm install formats
+```bash
+$ npm install formats
+```
 
 ## Quick start
 
@@ -162,7 +164,7 @@ Validates that a value is of type `object`.
 
 ##### Options
 
-- `isOptional`: Validates that a value may be `null`.
+- `isOptional`: Validates that a value may be `null` or `undefined`.
 - `schema`: Validates that a value fulfills a schema.
 - `isSchemaRelaxed`: Validates that a value may contain additional properties that are not described by the schema.
 
@@ -291,12 +293,14 @@ console.log(formats.isString('foobar', {
 
 To build this module use [roboter](https://www.npmjs.com/package/roboter).
 
-    $ bot build-server
+```bash
+$ bot build-server
+```
 
 ## License
 
 The MIT License (MIT)
-Copyright (c) 2014-2015 the native web.
+Copyright (c) 2014-2016 the native web.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
