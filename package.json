@@ -15,9 +15,8 @@
   "main": "lib/formats.js",
   "dependencies": {},
   "devDependencies": {
-    "assertthat": "0.6.0",
-    "gulp": "3.9.1",
-    "roboter": "0.5.1"
+    "assertthat": "0.7.0",
+    "roboter": "0.7.1"
   },
   "browserify": {
     "transform": [

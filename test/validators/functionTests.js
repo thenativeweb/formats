@@ -4,54 +4,49 @@ const assert = require('assertthat');
 
 const validator = require('../../lib/validators/function');
 
-suite('function', function () {
-  test('is a function.', function (done) {
+suite('function', () => {
+  test('is a function.', done => {
     assert.that(validator).is.ofType('function');
     done();
   });
 
-  test('returns a function.', function (done) {
+  test('returns a function.', done => {
     assert.that(validator()).is.ofType('function');
     done();
   });
 
-  test('throws on unknown properties.', function (done) {
-    assert.that(function () {
+  test('throws on unknown properties.', done => {
+    assert.that(() => {
       validator({ nonExistent: 'foobar' });
     }).is.throwing('Unknown property nonExistent.');
     done();
   });
 
-  suite('basics', function () {
-    test('returns false for a non-function.', function (done) {
+  suite('basics', () => {
+    test('returns false for a non-function.', done => {
       assert.that(validator()('foo')).is.false();
       done();
     });
 
-    test('returns true for a function.', function (done) {
-      assert.that(validator()(function () {})).is.true();
+    test('returns true for a function.', done => {
+      assert.that(validator()(() => {
+        // Intentionally left blank.
+      })).is.true();
       done();
     });
   });
 
-  suite('default', function () {
-    test('returns the value if valid.', function (done) {
-      const defaultFunction = function () {
-        return 42;
-      };
-
-      const inputFunction = function () {
-        return 23;
-      };
+  suite('default', () => {
+    test('returns the value if valid.', done => {
+      const defaultFunction = () => 42;
+      const inputFunction = () => 23;
 
       assert.that(validator({ default: defaultFunction })(inputFunction)).is.equalTo(inputFunction);
       done();
     });
 
-    test('returns the default value if not valid.', function (done) {
-      const defaultFunction = function () {
-        return 23;
-      };
+    test('returns the default value if not valid.', done => {
+      const defaultFunction = () => 23;
 
       assert.that(validator({ default: defaultFunction })(23)).is.equalTo(defaultFunction);
       done();

@@ -4,59 +4,59 @@ const assert = require('assertthat');
 
 const validator = require('../../lib/validators/regex');
 
-suite('regex', function () {
-  test('is a function.', function (done) {
+suite('regex', () => {
+  test('is a function.', done => {
     assert.that(validator).is.ofType('function');
     done();
   });
 
-  test('throws an error if options are missing.', function (done) {
-    assert.that(function () {
+  test('throws an error if options are missing.', done => {
+    assert.that(() => {
       validator();
     }).is.throwing('Options are missing.');
     done();
   });
 
-  test('throws an error if regex is missing.', function (done) {
-    assert.that(function () {
+  test('throws an error if regex is missing.', done => {
+    assert.that(() => {
       validator({});
     }).is.throwing('Regular expression is missing.');
     done();
   });
 
-  test('returns a function.', function (done) {
+  test('returns a function.', done => {
     assert.that(validator({ expression: /foo/ })).is.ofType('function');
     done();
   });
 
-  test('throws on unknown properties.', function (done) {
-    assert.that(function () {
+  test('throws on unknown properties.', done => {
+    assert.that(() => {
       validator({ expression: /^foo$/, nonExistent: 'foobar' });
     }).is.throwing('Unknown property nonExistent.');
     done();
   });
 
-  suite('basics', function () {
-    suite('expression', function () {
-      test('returns false if the regex does not match.', function (done) {
+  suite('basics', () => {
+    suite('expression', () => {
+      test('returns false if the regex does not match.', done => {
         assert.that(validator({ expression: /^foo$/ })('foobar')).is.false();
         done();
       });
 
-      test('returns true if the regex matches.', function (done) {
+      test('returns true if the regex matches.', done => {
         assert.that(validator({ expression: /^foo/ })('foobar')).is.true();
         done();
       });
     });
   });
 
-  suite('default', function () {
-    test('returns the value if valid.', function (done) {
+  suite('default', () => {
+    test('returns the value if valid.', done => {
       assert.that(validator({ expression: /^foo/, default: 'bas' })('foobar')).is.equalTo('foobar');
       done();
     });
 
-    test('returns the default value if not valid.', function (done) {
+    test('returns the default value if not valid.', done => {
       assert.that(validator({ expression: /^foo$/, default: 'bas' })('foobar')).is.equalTo('bas');
       done();
     });

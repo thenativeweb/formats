@@ -3,7 +3,7 @@
 const assert = require('assertthat');
 
 const getReturnValue = require('../../lib/getReturnValue'),
-    validator = require('../../lib/validators/custom');
+      validator = require('../../lib/validators/custom');
 
 const range = function (options) {
   options = options || {};
@@ -29,25 +29,25 @@ const range = function (options) {
   };
 };
 
-suite('custom', function () {
-  test('is a function.', function (done) {
+suite('custom', () => {
+  test('is a function.', done => {
     assert.that(validator).is.ofType('function');
     done();
   });
 
-  test('throws an error if validator is missing.', function (done) {
-    assert.that(function () {
+  test('throws an error if validator is missing.', done => {
+    assert.that(() => {
       validator();
     }).is.throwing('Validator is missing.');
     done();
   });
 
-  test('returns a function.', function (done) {
+  test('returns a function.', done => {
     assert.that(validator(range({ min: 5, max: 23 }))).is.ofType('function');
     done();
   });
 
-  test('returns the requested validator.', function (done) {
+  test('returns the requested validator.', done => {
     const rangeValidator = validator(range({ min: 5, max: 23 }));
 
     assert.that(rangeValidator(7)).is.true();
@@ -56,7 +56,7 @@ suite('custom', function () {
     done();
   });
 
-  test('returns the requested validator with default option.', function (done) {
+  test('returns the requested validator with default option.', done => {
     const rangeValidator = validator(range({ min: 5, max: 23, default: 7 }));
 
     assert.that(rangeValidator(7)).is.equalTo(7);
