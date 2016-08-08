@@ -15,8 +15,8 @@
   "main": "lib/formats.js",
   "dependencies": {},
   "devDependencies": {
-    "assertthat": "0.7.0",
-    "roboter": "0.7.1"
+    "assertthat": "0.8.0",
+    "roboter": "0.11.14"
   },
   "browserify": {
     "transform": [
