@@ -16,7 +16,7 @@
   "dependencies": {},
   "devDependencies": {
     "assertthat": "0.8.0",
-    "roboter": "0.11.15"
+    "roboter": "0.11.16"
   },
   "browserify": {
     "transform": [
