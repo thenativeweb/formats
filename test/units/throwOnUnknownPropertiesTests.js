@@ -2,7 +2,7 @@
 
 const assert = require('assertthat');
 
-const throwOnUnknownProperties = require('../lib/throwOnUnknownProperties');
+const throwOnUnknownProperties = require('../../lib/throwOnUnknownProperties');
 
 suite('throwOnUnknownProperties', () => {
   test('is a function.', done => {

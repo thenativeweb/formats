@@ -2,7 +2,7 @@
 
 const assert = require('assertthat');
 
-const validator = require('../../lib/validators/regex');
+const validator = require('../../../lib/validators/regex');
 
 suite('regex', () => {
   test('is a function.', done => {

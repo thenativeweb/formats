@@ -2,9 +2,9 @@
 
 const assert = require('assertthat');
 
-const validator = require('../../lib/validators/alphanumeric');
+const validator = require('../../../lib/validators/string');
 
-suite('alphanumeric', () => {
+suite('string', () => {
   test('is a function.', done => {
     assert.that(validator).is.ofType('function');
     done();
@@ -28,13 +28,13 @@ suite('alphanumeric', () => {
       done();
     });
 
-    test('returns false for a non-alphanumeric.', done => {
-      assert.that(validator()('foo-bar')).is.false();
+    test('returns true for a string.', done => {
+      assert.that(validator()('foo')).is.true();
       done();
     });
 
-    test('returns true for an alphanumeric.', done => {
-      assert.that(validator()('fooBar23')).is.true();
+    test('returns true for an empty string.', done => {
+      assert.that(validator()('')).is.true();
       done();
     });
 
@@ -65,12 +65,12 @@ suite('alphanumeric', () => {
 
   suite('default', () => {
     test('returns the value if valid.', done => {
-      assert.that(validator({ default: 'bar23' })('foo42')).is.equalTo('foo42');
+      assert.that(validator({ default: 'bar' })('foo')).is.equalTo('foo');
       done();
     });
 
     test('returns the default value if not valid.', done => {
-      assert.that(validator({ default: 'bar23' })(23)).is.equalTo('bar23');
+      assert.that(validator({ default: 'bar' })(23)).is.equalTo('bar');
       done();
     });
   });

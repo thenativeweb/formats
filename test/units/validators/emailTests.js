@@ -2,9 +2,9 @@
 
 const assert = require('assertthat');
 
-const validator = require('../../lib/validators/boolean');
+const validator = require('../../../lib/validators/email');
 
-suite('boolean', () => {
+suite('email', () => {
   test('is a function.', done => {
     assert.that(validator).is.ofType('function');
     done();
@@ -23,30 +23,30 @@ suite('boolean', () => {
   });
 
   suite('basics', () => {
-    test('returns false for a non-boolean.', done => {
-      assert.that(validator()('foo')).is.false();
+    test('returns false for a non-string.', done => {
+      assert.that(validator()(23)).is.false();
       done();
     });
 
-    test('returns true for true.', done => {
-      assert.that(validator()(true)).is.true();
+    test('returns false for a non-email.', done => {
+      assert.that(validator()('')).is.false();
       done();
     });
 
-    test('returns true for false.', done => {
-      assert.that(validator()(true)).is.true();
+    test('returns true for an email.', done => {
+      assert.that(validator()('jane.doe@example.com')).is.true();
       done();
     });
   });
 
   suite('default', () => {
     test('returns the value if valid.', done => {
-      assert.that(validator({ default: true })(false)).is.false();
+      assert.that(validator({ default: 'jane.doe@example.com' })('john.doe@example.com')).is.equalTo('john.doe@example.com');
       done();
     });
 
     test('returns the default value if not valid.', done => {
-      assert.that(validator({ default: true })(23)).is.true();
+      assert.that(validator({ default: 'jane.doe@example.com' })(23)).is.equalTo('jane.doe@example.com');
       done();
     });
   });

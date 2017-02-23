@@ -2,9 +2,9 @@
 
 const assert = require('assertthat');
 
-const validator = require('../../lib/validators/email');
+const validator = require('../../../lib/validators/function');
 
-suite('email', () => {
+suite('function', () => {
   test('is a function.', done => {
     assert.that(validator).is.ofType('function');
     done();
@@ -23,30 +23,32 @@ suite('email', () => {
   });
 
   suite('basics', () => {
-    test('returns false for a non-string.', done => {
-      assert.that(validator()(23)).is.false();
+    test('returns false for a non-function.', done => {
+      assert.that(validator()('foo')).is.false();
       done();
     });
 
-    test('returns false for a non-email.', done => {
-      assert.that(validator()('')).is.false();
-      done();
-    });
-
-    test('returns true for an email.', done => {
-      assert.that(validator()('jane.doe@example.com')).is.true();
+    test('returns true for a function.', done => {
+      assert.that(validator()(() => {
+        // Intentionally left blank.
+      })).is.true();
       done();
     });
   });
 
   suite('default', () => {
     test('returns the value if valid.', done => {
-      assert.that(validator({ default: 'jane.doe@example.com' })('john.doe@example.com')).is.equalTo('john.doe@example.com');
+      const defaultFunction = () => 42;
+      const inputFunction = () => 23;
+
+      assert.that(validator({ default: defaultFunction })(inputFunction)).is.equalTo(inputFunction);
       done();
     });
 
     test('returns the default value if not valid.', done => {
-      assert.that(validator({ default: 'jane.doe@example.com' })(23)).is.equalTo('jane.doe@example.com');
+      const defaultFunction = () => 23;
+
+      assert.that(validator({ default: defaultFunction })(23)).is.equalTo(defaultFunction);
       done();
     });
   });

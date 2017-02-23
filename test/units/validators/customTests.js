@@ -2,8 +2,8 @@
 
 const assert = require('assertthat');
 
-const getReturnValue = require('../../lib/getReturnValue'),
-      validator = require('../../lib/validators/custom');
+const getReturnValue = require('../../../lib/getReturnValue'),
+      validator = require('../../../lib/validators/custom');
 
 const range = function (options) {
   options = options || {};
