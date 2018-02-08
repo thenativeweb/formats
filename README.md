@@ -235,7 +235,7 @@ Additionally, it is advised to protect against unknown properties to avoid typos
 
 ```javascript
 const getReturnValue = require('formats').getReturnValue,
-    throwOnUnknownProperties = require('formats').throwOnUnknownProperties;
+      throwOnUnknownProperties = require('formats').throwOnUnknownProperties;
 
 const range = function (options) {
   options = options || {};
