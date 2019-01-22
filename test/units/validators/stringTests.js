@@ -2,7 +2,7 @@
 
 const assert = require('assertthat');
 
-const validator = require('../../../lib/validators/string');
+const validator = require('../../../src/validators/string');
 
 suite('string', () => {
   test('is a function.', done => {

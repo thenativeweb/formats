@@ -2,8 +2,8 @@
 
 const assert = require('assertthat');
 
-const formats = require('../../../lib/formats'),
-      validator = require('../../../lib/validators/object');
+const formats = require('../../../src/formats'),
+      validator = require('../../../src/validators/object');
 
 suite('object', () => {
   test('is a function.', done => {

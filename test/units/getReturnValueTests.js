@@ -2,7 +2,7 @@
 
 const assert = require('assertthat');
 
-const getReturnValue = require('../../lib/getReturnValue');
+const getReturnValue = require('../../src/getReturnValue');
 
 suite('getReturnValue', () => {
   test('is a function.', done => {

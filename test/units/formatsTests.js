@@ -2,7 +2,7 @@
 
 const assert = require('assertthat');
 
-const formats = require('../../lib/formats');
+const formats = require('../../src/formats');
 
 suite('formats', () => {
   test('is an object.', done => {
